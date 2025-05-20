@@ -1,0 +1,23 @@
+/* Google Nunito Font */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+
+@import "tailwindcss";
+@plugin "daisyui" {
+  themes: light --default;
+}
+
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  --color-primary: #f472b6;
+  --color-secondary: #60a5fa;
+  --color-accent: #facc15;
+  --text-accent: #be185d;
+  --color-base-200: #fff7ed;
+  --color-base-300: #fef3c7;
+}
+
+* {
+  font-family: "Nunito", sans-serif;
+}
