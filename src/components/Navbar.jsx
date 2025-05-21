@@ -1,7 +1,7 @@
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
 import { Link, NavLink } from "react-router";
-import cookLogo from "../assets/icons/cooking.png";
+import navLogo from "../assets/icons/cookingNavLogo.png";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link to="/">
             <img
               className="w-10 h-10 cursor-pointer hidden md:inline-block"
-              src={cookLogo}
+              src={navLogo}
               alt="Cooking"
             />
           </Link>
