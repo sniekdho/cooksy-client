@@ -1,20 +1,24 @@
 import { Eye, EyeOff } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
   const [showEye, setShowEye] = useState(false);
   const [error, setError] = useState("");
   const { createUser } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSignUp = (e) => {
     e.preventDefault();
 
     const form = e.target;
     const formData = new FormData(form);
-    const newUser = Object.fromEntries(formData.entries());
+    const { email, password, ...restFormData } = Object.fromEntries(
+      formData.entries()
+    );
 
     const passwordRules = [
       {
@@ -32,19 +36,61 @@ const SignUp = () => {
     ];
 
     for (let rules of passwordRules) {
-      if (!rules.regex.test(newUser.password)) {
+      if (!rules.regex.test(password)) {
         setError(rules.message);
         return;
       }
     }
 
-    createUser(newUser.email, newUser.password)
-      .then((result) => {
-        setError("");
-        console.log(result.user);
+    const getSignUpErrorMessage = (errorCode) => {
+      switch (errorCode) {
+        case "auth/email-already-in-use":
+          return "This email is already registered. Try logging in.";
+        case "auth/invalid-email":
+          return "Please enter a valid email address.";
+        case "auth/weak-password":
+          return "Password should be at least 6 characters long.";
+        case "auth/missing-password":
+          return "Password is required.";
+        case "auth/network-request-failed":
+          return "Network error. Please check your internet connection.";
+        default:
+          return "Could not create account. Please try again.";
+      }
+    };
+
+    createUser(email, password)
+      .then(() => {
+        const userProfile = { email, ...restFormData };
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(userProfile),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId) {
+              Swal.fire({
+                icon: "success",
+                title: "Account Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              setError("");
+              navigate("/");
+            }
+          });
       })
       .catch((error) => {
-        console.log(error.message);
+        const friendlyMessage = getSignUpErrorMessage(error.code);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: friendlyMessage,
+        });
       });
   };
 
