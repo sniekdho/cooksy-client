@@ -5,6 +5,11 @@ import Home from "../pages/Home";
 import AuthLayout from "../layouts/AuthLayout";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import { Component } from "react";
+import AllRecipes from "../pages/AllRecipes";
+import PrivateRoute from "./PrivateRoute";
+import AddRecipe from "../pages/AddRecipe";
+import MyRecipes from "../pages/MyRecipes";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +19,26 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/allRecipes",
+        Component: AllRecipes,
+      },
+      {
+        path: "/addRecipe",
+        element: (
+          <PrivateRoute>
+            <AddRecipe></AddRecipe>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myRecipes",
+        element: (
+          <PrivateRoute>
+            <MyRecipes></MyRecipes>
+          </PrivateRoute>
+        ),
       },
     ],
   },

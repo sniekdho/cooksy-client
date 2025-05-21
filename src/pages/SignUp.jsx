@@ -1,7 +1,7 @@
 import { Eye, EyeOff } from "lucide-react";
 import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 
@@ -10,6 +10,7 @@ const SignUp = () => {
   const [error, setError] = useState("");
   const { setUser, createUser, updateProfileUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignUp = (e) => {
     e.preventDefault();
@@ -85,7 +86,7 @@ const SignUp = () => {
                     timer: 1500,
                   });
                   setError("");
-                  navigate("/");
+                  navigate(`${location?.state ? location?.state : "/"}`);
                 })
                 .catch((error) => {
                   Swal.fire({
