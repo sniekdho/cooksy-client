@@ -1,10 +1,62 @@
 import { Eye, EyeOff } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
+import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [showEye, setShowEye] = useState(false);
+  const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    const getSignInErrorMessage = (errorCode) => {
+      switch (errorCode) {
+        case "auth/user-not-found":
+          return "No account found with this email. Please sign up first.";
+        case "auth/invalid-password":
+        case "auth/invalid-credential":
+        case "auth/wrong-password":
+        case "auth/invalid-login-credentials":
+          return "Incorrect email or password. Please try again.";
+        case "auth/invalid-email":
+          return "Please enter a valid email address.";
+        case "auth/missing-password":
+          return "Password is required.";
+        case "auth/network-request-failed":
+          return "Network error. Please check your internet connection.";
+        case "auth/too-many-requests":
+          return "Too many failed attempts. Please try again later.";
+        default:
+          return "Login failed. Please try again.";
+      }
+    };
+
+    signInUser(email, password)
+      .then(() => {
+        Swal.fire({
+          icon: "success",
+          title: "Welcome",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      })
+      .catch((error) => {
+        const friendlyMessage = getSignInErrorMessage(error.code);
+        Swal.fire({
+          icon: "error",
+          title: friendlyMessage,
+        });
+      });
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-white py-10 px-4">
@@ -17,7 +69,7 @@ const SignIn = () => {
           your culinary journey.
         </p>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSignIn} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
             <input

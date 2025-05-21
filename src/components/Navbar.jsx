@@ -1,10 +1,13 @@
 import { Menu, X } from "lucide-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, NavLink } from "react-router";
 import navLogo from "../assets/icons/cookingNavLogo.png";
+import { AuthContext } from "../contexts/AuthContext";
+import UserMenu from "./UserMenu";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const navItem = [
     { name: "Home", path: "/" },
@@ -53,14 +56,18 @@ const Navbar = () => {
         ))}
       </ul>
 
-      <div className="space-x-2">
-        <button className="btn btn-outline btn-sm">
-          <Link to="/auth/signin">SignIn</Link>
-        </button>
-        <button className="btn btn-primary btn-sm">
-          <Link to="/auth/signup">SignUp</Link>
-        </button>
-      </div>
+      {user ? (
+        <UserMenu />
+      ) : (
+        <div className="space-x-2">
+          <button className="btn btn-outline btn-sm">
+            <Link to="/auth/signin">SignIn</Link>
+          </button>
+          <button className="btn btn-primary btn-sm">
+            <Link to="/auth/signup">SignUp</Link>
+          </button>
+        </div>
+      )}
 
       {menuOpen && (
         <div className="fixed inset-0 z-50">

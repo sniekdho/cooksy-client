@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 const SignUp = () => {
   const [showEye, setShowEye] = useState(false);
   const [error, setError] = useState("");
-  const { createUser } = useContext(AuthContext);
+  const { setUser, createUser, updateProfileUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignUp = (e) => {
@@ -16,7 +16,7 @@ const SignUp = () => {
 
     const form = e.target;
     const formData = new FormData(form);
-    const { email, password, ...restFormData } = Object.fromEntries(
+    const { email, password, name, photo } = Object.fromEntries(
       formData.entries()
     );
 
@@ -42,26 +42,24 @@ const SignUp = () => {
       }
     }
 
-    const getSignUpErrorMessage = (errorCode) => {
+    const getSignUpErrorMessage = (errorCode, fallback) => {
       switch (errorCode) {
         case "auth/email-already-in-use":
           return "This email is already registered. Try logging in.";
         case "auth/invalid-email":
           return "Please enter a valid email address.";
         case "auth/weak-password":
-          return "Password should be at least 6 characters long.";
+          return "Password must be at least 6 characters.";
         case "auth/missing-password":
-          return "Password is required.";
-        case "auth/network-request-failed":
-          return "Network error. Please check your internet connection.";
+          return "Please enter a password.";
         default:
-          return "Could not create account. Please try again.";
+          return fallback || "Signup failed. Please try again.";
       }
     };
 
     createUser(email, password)
       .then(() => {
-        const userProfile = { email, ...restFormData };
+        const userProfile = { email, name, photo };
 
         fetch("http://localhost:3000/users", {
           method: "POST",
@@ -73,14 +71,34 @@ const SignUp = () => {
           .then((res) => res.json())
           .then((data) => {
             if (data.insertedId) {
+              // Update User Profile
+              updateProfileUser({ displayName: name, photoURL: photo })
+                .then(() => {
+                  setUser({
+                    displayName: name,
+                    photoURL: photo,
+                  });
+                  Swal.fire({
+                    icon: "success",
+                    title: "Account Created Successfully",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
+                  setError("");
+                  navigate("/");
+                })
+                .catch((error) => {
+                  Swal.fire({
+                    icon: "error",
+                    title: error.message,
+                  });
+                });
+            } else {
               Swal.fire({
-                icon: "success",
-                title: "Account Created Successfully",
-                showConfirmButton: false,
-                timer: 1500,
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not save user to database.",
               });
-              setError("");
-              navigate("/");
             }
           });
       })
