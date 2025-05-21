@@ -1,8 +1,53 @@
-import React from "react";
+import { Eye, EyeOff } from "lucide-react";
+import React, { useContext, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router";
+import { AuthContext } from "../contexts/AuthContext";
 
 const SignUp = () => {
+  const [showEye, setShowEye] = useState(false);
+  const [error, setError] = useState("");
+  const { createUser } = useContext(AuthContext);
+
+  const handleSignUp = (e) => {
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const newUser = Object.fromEntries(formData.entries());
+
+    const passwordRules = [
+      {
+        regex: /(?=.*[A-Z])/,
+        message: "Password must have at least one uppercase letter.",
+      },
+      {
+        regex: /(?=.*[a-z])/,
+        message: "Password must have at least one lowercase letter.",
+      },
+      {
+        regex: /.{6,}/,
+        message: "Password must be at least 6 characters long.",
+      },
+    ];
+
+    for (let rules of passwordRules) {
+      if (!rules.regex.test(newUser.password)) {
+        setError(rules.message);
+        return;
+      }
+    }
+
+    createUser(newUser.email, newUser.password)
+      .then((result) => {
+        setError("");
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-white py-10 px-4">
       <div className="max-w-md w-full bg-gray-50 p-8 rounded shadow">
@@ -14,7 +59,7 @@ const SignUp = () => {
           suggestions, and cook like a pro.
         </p>
 
-        <form className="space-y-4">
+        <form onSubmit={handleSignUp} className="space-y-4">
           <div>
             <label className="block text-sm font-medium mb-1">User Name</label>
             <input
@@ -50,14 +95,24 @@ const SignUp = () => {
 
           <div>
             <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="input input-bordered w-full"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showEye ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                className="input input-bordered w-full"
+                required
+              />
+              <div
+                className="absolute top-2 right-5 z-50 cursor-pointer"
+                onClick={() => setShowEye(!showEye)}
+              >
+                {showEye ? <Eye /> : <EyeOff />}
+              </div>
+            </div>
           </div>
+
+          {error && <p className="text-red-500 text-sm">{error}</p>}
 
           <button type="submit" className="btn btn-accent w-full">
             SignUp
