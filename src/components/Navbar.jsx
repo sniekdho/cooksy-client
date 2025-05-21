@@ -14,7 +14,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="flex items-center justify-between bg-base-300  px-4 py-3">
+    <nav className="flex items-center justify-between bg-base-300 px-4 py-3">
       <div className="flex items-center">
         <button
           className="md:hidden cursor-pointer"
@@ -54,8 +54,12 @@ const Navbar = () => {
       </ul>
 
       <div className="space-x-2">
-        <button className="btn btn-outline btn-sm">SignIn</button>
-        <button className="btn btn-primary btn-sm">SignUp</button>
+        <button className="btn btn-outline btn-sm">
+          <Link to="/auth/signin">SignIn</Link>
+        </button>
+        <button className="btn btn-primary btn-sm">
+          <Link to="/auth/signup">SignUp</Link>
+        </button>
       </div>
 
       {menuOpen && (
