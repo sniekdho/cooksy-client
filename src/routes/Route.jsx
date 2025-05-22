@@ -11,6 +11,7 @@ import PrivateRoute from "./PrivateRoute";
 import AddRecipe from "../pages/AddRecipe";
 import MyRecipes from "../pages/MyRecipes";
 import Spinner from "../components/Spinner";
+import RecipeDetails from "../pages/RecipeDetails";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,17 @@ const router = createBrowserRouter([
         hydrateFallbackElement: <Spinner></Spinner>,
         loader: () => fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
+      },
+      {
+        path: "/recipe_details/:id",
+        hydrateFallbackElement: <Spinner></Spinner>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/recipes/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <RecipeDetails></RecipeDetails>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/addRecipe",
