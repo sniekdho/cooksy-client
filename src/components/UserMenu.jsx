@@ -41,17 +41,15 @@ const UserMenu = () => {
     <div className="dropdown dropdown-bottom dropdown-end cursor-pointer">
       <div tabIndex={0} role="button" className="avatar m-1">
         <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
-          <img src={user.photoURL} />
+          <img src={user?.photoURL} />
         </div>
       </div>
       <ul
         tabIndex={0}
         className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm space-y-1.5"
       >
-        <li>
-          <li className="p-2 font-medium text-secondary">
-            User Name: {user?.displayName}
-          </li>
+        <li className="p-2 font-medium text-secondary">
+          User Name: {user?.displayName}
         </li>
         <li>
           <button
