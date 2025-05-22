@@ -61,6 +61,7 @@ const AddRecipe = () => {
                 timer: 1500,
                 showConfirmButton: false,
               });
+              form.reset();
             }
           });
       } else if (result.isDenied) {
@@ -232,7 +233,7 @@ const AddRecipe = () => {
 
         <button
           type="submit"
-          className="btn w-full mt-6 bg-primary text-black hover:text-white"
+          className="btn w-full mt-6 text-black bg-[#d2b48c] hover:bg-[#c49c6e] hover:text-white"
         >
           Add Recipe
         </button>

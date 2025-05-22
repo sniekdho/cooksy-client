@@ -10,11 +10,13 @@ import AllRecipes from "../pages/AllRecipes";
 import PrivateRoute from "./PrivateRoute";
 import AddRecipe from "../pages/AddRecipe";
 import MyRecipes from "../pages/MyRecipes";
+import Spinner from "../components/Spinner";
 
 const router = createBrowserRouter([
   {
     path: "/",
     Component: RootLayout,
+    hydrateFallbackElement: <Spinner></Spinner>,
     children: [
       {
         index: true,
@@ -22,6 +24,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/allRecipes",
+        hydrateFallbackElement: <Spinner></Spinner>,
+        loader: () => fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
       },
       {
