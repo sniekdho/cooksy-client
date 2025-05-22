@@ -7,7 +7,7 @@ const RecipeCard = ({ recipe }) => {
   return (
     <div className="card bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-lg">
       <figure>
-        <img src={image} alt="Shoes" />
+        <img src={image} alt={title} />
       </figure>
       <div className="card-body">
         <h2 className="card-title">{title}</h2>

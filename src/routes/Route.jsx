@@ -25,13 +25,10 @@ const router = createBrowserRouter([
       },
       {
         path: "/allRecipes",
-        hydrateFallbackElement: <Spinner></Spinner>,
-        loader: () => fetch("http://localhost:3000/recipes"),
         Component: AllRecipes,
       },
       {
         path: "/recipe_details/:id",
-        hydrateFallbackElement: <Spinner></Spinner>,
         loader: ({ params }) =>
           fetch(`http://localhost:3000/recipes/${params.id}`),
         element: (
