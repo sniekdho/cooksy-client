@@ -35,7 +35,8 @@ const Navbar = () => {
             />
           </Link>
           <h1 className="text-lg font-bold">
-            Cook<span className="text-primary">Sy</span>
+            <span className="text-secondary">Cook</span>
+            <span className="text-primary">Sy</span>
           </h1>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import not_found from "../assets/images/error-food.jpg";
+import not_found from "../assets/images/error.jpg";
 import { Link } from "react-router";
 
 const Page404 = () => {
@@ -8,7 +8,7 @@ const Page404 = () => {
       <img
         src={not_found}
         alt="404 - Not Found"
-        className="w-64 md:w-96 mb-8 animate-pulse rounded-lg shadow-orange-600 shadow-2xl"
+        className="w-64 md:w-96 mb-8 animate-pulse rounded-lg shadow-pink-600 shadow-2xl"
       />
       <h1 className="text-5xl font-extrabold text-orange-500 mb-4">404</h1>
       <h2 className="text-2xl font-semibold text-gray-800 mb-2">

@@ -8,7 +8,8 @@ const Footer = () => {
       <div className="space-y-2">
         <img className="w-20 h-20 mx-auto" src={footerLogo} alt="Cooking" />
         <h1 className="text-2xl font-bold">
-          Cook<span className="text-accent">Sy</span>
+          <span className="text-pink-500">Cook</span>
+          <span className="text-accent">Sy</span>
         </h1>
       </div>
 
