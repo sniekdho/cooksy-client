@@ -23,7 +23,7 @@ const TopRecipes = () => {
         <span className="text-primary">Top</span>{" "}
         <span className="text-secondary">Recipes</span>
       </h2>
-      <p className="text-center text-gray-600 mb-8 max-w-2xl mx-auto">
+      <p className="text-center text-base-content/70 mb-8 max-w-2xl mx-auto">
         Discover our most loved recipes, handpicked for their flavor,
         simplicity, and popularity. Whether you're a beginner or a seasoned
         cook, these top picks will inspire your next meal.
@@ -33,7 +33,7 @@ const TopRecipes = () => {
         {topRecipes.map((recipe) => (
           <div
             key={recipe._id}
-            className="card bg-base-100 shadow-sm h-full flex flex-col"
+            className="card bg-base-100 shadow-md h-full flex flex-col hover:shadow-lg transition duration-300"
           >
             <figure>
               <img
@@ -43,13 +43,13 @@ const TopRecipes = () => {
               />
             </figure>
             <div className="card-body flex-grow flex flex-col">
-              <h3 className="text-lg font-semibold line-clamp-2">
+              <h3 className="text-lg font-semibold line-clamp-2 text-base-content">
                 {recipe.title}
               </h3>
-              <p className="text-gray-600">
+              <p className="text-base-content/70">
                 <strong>Cuisine:</strong> {recipe.cuisine}
               </p>
-              <p className="text-gray-600 mb-2">
+              <p className="text-base-content/70 mb-2">
                 <strong>Likes:</strong> {recipe.likeCount}
               </p>
               <div className="mt-auto">

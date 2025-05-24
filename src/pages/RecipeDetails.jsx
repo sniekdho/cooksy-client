@@ -49,49 +49,62 @@ const RecipeDetails = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-6 py-10 mt-10 mb-20 bg-white shadow-md rounded-xl">
-      <img
-        src={image}
-        alt={title}
-        className="w-full h-64 object-cover rounded-lg mb-6"
-      />
-
-      <h3 className="text-lg font-semibold text-pink-600 mb-4">
-        {likeCount} people interested in this recipe
-      </h3>
-
-      <h1 className="text-3xl font-bold mb-2">{title}</h1>
-      <p className="text-sm text-gray-500 mb-4">
-        By <strong>{name}</strong>
+    <div>
+      <h2 className="text-4xl font-extrabold text-pink-600 mb-2 mt-10 text-center">
+        Recipe Details
+      </h2>
+      <p className="text-base-content/70 text-lg max-w-xl mx-auto text-center">
+        Discover all the ingredients, instructions, and tips to make this
+        delicious recipe come alive in your kitchen.
       </p>
+      <div className="max-w-4xl mx-auto px-6 py-10 mt-10 mb-20 bg-base-100 shadow-lg rounded-xl text-base-content">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-64 object-cover rounded-lg mb-6 shadow-md"
+        />
 
-      <div className="space-y-2 text-gray-700">
-        <p>
-          <strong>Cuisine:</strong> {cuisine}
+        <h3 className="text-lg font-semibold text-pink-500 mb-4">
+          {likeCount} people interested in this recipe
+        </h3>
+
+        <h1 className="text-3xl font-bold mb-2 text-pink-600">{title}</h1>
+        <p className="text-sm text-base-content/60 mb-6">
+          By <strong className="text-pink-500">{name}</strong>
         </p>
-        <p>
-          <strong>Preparation Time:</strong> {prepTime} minutes
-        </p>
-        <p>
-          <strong>Ingredients:</strong> {ingredients}
-        </p>
-        <p>
-          <strong>Instructions:</strong> {instructions}
-        </p>
-        <p>
-          <strong>Categories:</strong> {categories?.join(", ")}
-        </p>
-        <p>
-          <strong>Likes:</strong> {likeCount}
-        </p>
+
+        <div className="space-y-2 text-base-content/80 leading-relaxed">
+          <p>
+            <strong className="text-pink-500">Cuisine:</strong> {cuisine}
+          </p>
+          <p>
+            <strong className="text-pink-500">Preparation Time:</strong>{" "}
+            {prepTime} minutes
+          </p>
+          <p>
+            <strong className="text-pink-500">Ingredients:</strong>{" "}
+            {ingredients}
+          </p>
+          <p>
+            <strong className="text-pink-500">Instructions:</strong>{" "}
+            {instructions}
+          </p>
+          <p>
+            <strong className="text-pink-500">Categories:</strong>{" "}
+            {categories?.join(", ")}
+          </p>
+          <p>
+            <strong className="text-pink-500">Likes:</strong> {likeCount}
+          </p>
+        </div>
+
+        <button
+          onClick={handleLike}
+          className="mt-8 w-full sm:w-auto bg-pink-600 hover:bg-pink-700 text-white font-semibold px-8 py-3 rounded-md shadow-md transition-colors cursor-pointer"
+        >
+          ❤️ Like
+        </button>
       </div>
-
-      <button
-        onClick={handleLike}
-        className="mt-6 bg-pink-600 hover:bg-pink-700 text-white px-6 py-2 rounded-md cursor-pointer"
-      >
-        ❤️ Like
-      </button>
     </div>
   );
 };

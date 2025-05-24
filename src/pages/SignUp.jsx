@@ -162,62 +162,70 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white py-10 px-4">
-      <div className="max-w-md w-full bg-gray-50 p-8 rounded shadow">
-        <h2 className="text-2xl font-bold text-center text-secondary mb-2">
+    <div className="min-h-screen flex items-center justify-center bg-base-200 py-10 px-4">
+      <div className="max-w-md w-full bg-base-100 p-8 rounded-xl shadow-lg">
+        <h2 className="text-3xl font-extrabold text-pink-600 text-center mb-2">
           Create Your CookSy Account
         </h2>
-        <p className="text-center text-sm text-gray-600 mb-6">
+        <p className="text-center text-base-content/70 mb-6">
           Join a community of food lovers. Save recipes, get personalized
           suggestions, and cook like a pro.
         </p>
 
-        <form onSubmit={handleSignUp} className="space-y-4">
+        <form onSubmit={handleSignUp} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">User Name</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              User Name
+            </label>
             <input
               type="text"
               name="name"
               placeholder="User Name"
-              className="input input-bordered w-full"
+              className="input input-bordered input-primary w-full bg-base-200"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              Email
+            </label>
             <input
               type="email"
               name="email"
               placeholder="Email"
-              className="input input-bordered w-full"
+              className="input input-bordered input-primary w-full bg-base-200"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Photo URL</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              Photo URL
+            </label>
             <input
               type="text"
               name="photo"
               placeholder="Photo URL"
-              className="input input-bordered w-full"
+              className="input input-bordered input-primary w-full bg-base-200"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              Password
+            </label>
             <div className="relative">
               <input
                 type={showEye ? "text" : "password"}
                 name="password"
                 placeholder="Password"
-                className="input input-bordered w-full"
+                className="input input-bordered input-primary w-full bg-base-200"
                 required
               />
               <div
-                className="absolute top-2 right-5 z-50 cursor-pointer"
+                className="absolute top-2 right-5 z-50 cursor-pointer text-pink-600"
                 onClick={() => setShowEye(!showEye)}
               >
                 {showEye ? <Eye /> : <EyeOff />}
@@ -227,14 +235,20 @@ const SignUp = () => {
 
           {error && <p className="text-red-500 text-sm">{error}</p>}
 
-          <button type="submit" className="btn btn-accent w-full">
+          <button
+            type="submit"
+            className="btn bg-pink-600 hover:bg-pink-700 border-0 w-full text-white font-semibold"
+          >
             SignUp
           </button>
         </form>
 
-        <div className="text-center mt-4">
+        <div className="text-center mt-4 text-base-content/80">
           Already have an account?{" "}
-          <Link to="/auth/signin" className="text-accent font-semibold">
+          <Link
+            to="/auth/signin"
+            className="text-pink-600 font-semibold hover:text-pink-700"
+          >
             SignIn
           </Link>
         </div>
@@ -242,7 +256,7 @@ const SignUp = () => {
         <div className="divider">OR</div>
         <button
           onClick={handleGoogleSignUp}
-          className="btn btn-outline w-full flex items-center justify-center"
+          className="btn btn-outline border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white w-full flex items-center justify-center gap-2"
         >
           <FcGoogle className="mr-2" /> Sign up with Google
         </button>

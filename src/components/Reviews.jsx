@@ -26,7 +26,7 @@ const Reviews = () => {
   ];
 
   return (
-    <section className="bg-white py-16 px-4 md:px-8">
+    <section className="bg-base-100 py-16 px-4 md:px-8">
       <div className="max-w-6xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-10">
           What Our Users Say
@@ -36,7 +36,7 @@ const Reviews = () => {
           {feedBacks.map((feedback, idx) => (
             <div
               key={idx}
-              className="bg-gray-50 p-6 rounded-lg shadow hover:shadow-md transition duration-300"
+              className="bg-base-200 p-6 rounded-lg shadow hover:shadow-md transition duration-300"
             >
               <div className="flex flex-col items-center space-y-4">
                 <img
@@ -44,7 +44,7 @@ const Reviews = () => {
                   alt={feedback.name}
                   className="w-16 h-16 rounded-full object-cover border-2 border-accent"
                 />
-                <p className="text-gray-700 italic text-sm">
+                <p className="text-base-content italic text-sm text-center">
                   "{feedback.comment}"
                 </p>
                 <h4 className="text-lg font-semibold text-secondary">

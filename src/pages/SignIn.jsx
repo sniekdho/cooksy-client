@@ -79,40 +79,44 @@ const SignIn = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white py-10 px-4">
-      <div className="max-w-md w-full bg-gray-50 p-8 rounded shadow">
-        <h2 className="text-2xl font-bold text-center text-secondary mb-2">
+    <div className="min-h-screen flex items-center justify-center bg-base-200 py-10 px-4">
+      <div className="max-w-md w-full bg-base-100 p-8 rounded-xl shadow-lg">
+        <h2 className="text-3xl font-extrabold text-pink-600 text-center mb-2">
           Welcome Back to CookSy
         </h2>
-        <p className="text-center text-sm text-gray-600 mb-6">
+        <p className="text-center text-base-content/70 mb-6">
           Log in to explore your saved recipes, track cooking goals, and enjoy
           your culinary journey.
         </p>
 
-        <form onSubmit={handleSignIn} className="space-y-4">
+        <form onSubmit={handleSignIn} className="space-y-5">
           <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              Email
+            </label>
             <input
               type="email"
               name="email"
               placeholder="Email"
-              className="input input-bordered w-full"
+              className="input input-bordered input-primary w-full bg-base-200"
               required
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
+            <label className="block text-sm font-semibold text-pink-600 mb-2">
+              Password
+            </label>
             <div className="relative">
               <input
                 type={showEye ? "text" : "password"}
                 name="password"
                 placeholder="Password"
-                className="input input-bordered w-full"
+                className="input input-bordered input-primary w-full bg-base-200"
                 required
               />
               <div
-                className="absolute top-2 right-5 z-50 cursor-pointer"
+                className="absolute top-2 right-5 z-50 cursor-pointer text-pink-600"
                 onClick={() => setShowEye(!showEye)}
               >
                 {showEye ? <Eye /> : <EyeOff />}
@@ -120,20 +124,29 @@ const SignIn = () => {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-accent w-full">
+          <button
+            type="submit"
+            className="btn bg-pink-600 hover:bg-pink-700 border-0 w-full text-white font-semibold"
+          >
             SignIn
           </button>
         </form>
 
-        <div className="text-right mt-2 text-sm text-gray-600">
-          <Link to="/forgot-password" className="hover:text-accent">
+        <div className="text-right mt-3 text-sm text-pink-600">
+          <Link
+            to="/forgot-password"
+            className="hover:underline hover:text-pink-700"
+          >
             Forgot password?
           </Link>
         </div>
 
-        <div className="text-center mt-4">
+        <div className="text-center mt-6 text-base-content/80">
           New user?{" "}
-          <Link to="/auth/signup" className="text-accent font-semibold">
+          <Link
+            to="/auth/signup"
+            className="text-pink-600 font-semibold hover:text-pink-700"
+          >
             SignUp
           </Link>
         </div>
@@ -141,7 +154,7 @@ const SignIn = () => {
         <div className="divider">OR</div>
         <button
           onClick={handleGoogleSignIn}
-          className="btn btn-outline w-full flex items-center justify-center"
+          className="btn btn-outline border-pink-600 text-pink-600 hover:bg-pink-600 hover:text-white w-full flex items-center justify-center gap-2"
         >
           <FcGoogle className="mr-2" /> Sign in with Google
         </button>

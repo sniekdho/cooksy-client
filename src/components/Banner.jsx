@@ -60,8 +60,8 @@ const Banner = () => {
                 alt={`Slide ${index + 1}`}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white px-4 text-center">
-                <h2 className="text-3xl md:text-5xl font-bold mb-2 text-white drop-shadow-lg">
+              <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-black/20 flex flex-col justify-center items-center px-4 text-center">
+                <h2 className="text-3xl md:text-5xl font-bold mb-3 text-white drop-shadow-xl">
                   <Typewriter
                     words={[slide.heading]}
                     loop={false}
@@ -72,7 +72,7 @@ const Banner = () => {
                     delaySpeed={2000}
                   />
                 </h2>
-                <p className="text-lg md:text-xl text-gray-100 drop-shadow-sm">
+                <p className="text-lg md:text-xl text-gray-200 font-medium">
                   {slide.subtext}
                 </p>
               </div>

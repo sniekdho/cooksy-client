@@ -39,10 +39,10 @@ const AllRecipes = () => {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-[#d2b48c]">
+      <h2 className="text-3xl font-bold mb-6 text-center text-primary">
         All Recipes
       </h2>
-      <p className="text-center text-gray-600 mb-6">
+      <p className="text-center text-base-content/70 mb-6">
         Discover a wide variety of delicious recipes shared by our cooking
         community.
       </p>
@@ -50,7 +50,7 @@ const AllRecipes = () => {
         <select
           value={selectedCuisine}
           onChange={(e) => setSelectedCuisine(e.target.value)}
-          className="px-4 py-2 border rounded-md shadow-md text-gray-700"
+          className="px-4 py-2 border rounded-md shadow-md text-base-content bg-base-200 border-base-content/30"
         >
           {cuisineTypes.map((type) => (
             <option key={type} value={type}>

@@ -71,27 +71,27 @@ const AddRecipe = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto p-8 mb-20 bg-white shadow-md rounded-xl mt-10">
-      <h2 className="text-3xl font-semibold mb-2 text-center text-[#d2b48c]">
+    <div className="max-w-4xl mx-auto p-8 mb-20 bg-base-100 shadow-md rounded-xl mt-10">
+      <h2 className="text-3xl font-semibold mb-2 text-center text-primary">
         Add New Recipe
       </h2>
-      <p className="text-center text-gray-600 mb-8">
+      <p className="text-center text-base-content/70 mb-8">
         Share your favorite recipe with the community!
       </p>
       <form onSubmit={handleAddRecipe}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Image URL */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Image URL
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Provide a link to an image of your dish.
             </p>
             <input
               type="text"
               name="image"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content"
               placeholder="https://example.com/image.jpg"
               required
             />
@@ -99,16 +99,16 @@ const AddRecipe = () => {
 
           {/* Title */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Recipe Title
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Give your recipe a catchy title.
             </p>
             <input
               type="text"
               name="title"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content"
               placeholder="Delicious Pasta"
               required
             />
@@ -116,16 +116,16 @@ const AddRecipe = () => {
 
           {/* Ingredients */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Ingredients
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               List all ingredients, separated by commas.
             </p>
             <textarea
               name="ingredients"
               placeholder="Tomatoes, Basil, Garlic, Olive Oil"
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full bg-base-200 text-base-content"
               rows="3"
               required
             />
@@ -133,16 +133,16 @@ const AddRecipe = () => {
 
           {/* Instructions */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Instructions
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Describe the preparation steps in detail.
             </p>
             <textarea
               name="instructions"
               placeholder="1. Boil water...\n2. Add pasta..."
-              className="textarea textarea-bordered w-full"
+              className="textarea textarea-bordered w-full bg-base-200 text-base-content"
               rows="4"
               required
             />
@@ -150,15 +150,15 @@ const AddRecipe = () => {
 
           {/* Cuisine Type */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Cuisine Type
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Select the cuisine category.
             </p>
             <select
               name="cuisine"
-              className="select select-bordered w-full"
+              className="select select-bordered w-full bg-base-200 text-base-content"
               required
             >
               <option value="">Select Cuisine</option>
@@ -172,16 +172,16 @@ const AddRecipe = () => {
 
           {/* Preparation Time */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Preparation Time (minutes)
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               How long does it take to prepare this dish?
             </p>
             <input
               type="number"
               name="prepTime"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full bg-base-200 text-base-content"
               placeholder="30"
               min="1"
               required
@@ -190,10 +190,10 @@ const AddRecipe = () => {
 
           {/* Categories */}
           <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Categories
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Select all applicable categories.
             </p>
             <div className="flex flex-wrap gap-4">
@@ -204,7 +204,7 @@ const AddRecipe = () => {
                       type="checkbox"
                       name="categories"
                       value={category}
-                      className="checkbox"
+                      className="checkbox bg-base-200 text-base-content"
                     />
                     <span>{category}</span>
                   </label>
@@ -215,10 +215,10 @@ const AddRecipe = () => {
 
           {/* Like Count */}
           <div>
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-base-content">
               Like Count
             </label>
-            <p className="text-xs text-gray-500 mb-1">
+            <p className="text-xs text-base-content/70 mb-1">
               Initial like count (read-only).
             </p>
             <input
@@ -226,14 +226,14 @@ const AddRecipe = () => {
               name="likeCount"
               value={0}
               readOnly
-              className="input input-bordered w-full bg-gray-100 cursor-not-allowed"
+              className="input input-bordered w-full bg-base-200 text-base-content cursor-not-allowed"
             />
           </div>
         </div>
 
         <button
           type="submit"
-          className="btn w-full mt-6 text-black bg-[#d2b48c] hover:bg-[#c49c6e] hover:text-white"
+          className="btn w-full mt-6 text-primary-content bg-primary hover:bg-primary-focus hover:text-primary-content"
         >
           Add Recipe
         </button>

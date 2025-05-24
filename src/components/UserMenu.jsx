@@ -40,21 +40,21 @@ const UserMenu = () => {
   return (
     <div className="dropdown dropdown-bottom dropdown-end cursor-pointer">
       <div tabIndex={0} role="button" className="avatar m-1">
-        <div className="ring-primary ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
-          <img src={user?.photoURL} />
+        <div className="ring-pink-500 ring-offset-base-100 w-10 rounded-full ring-2 ring-offset-2">
+          <img src={user?.photoURL} alt={user?.displayName || "User"} />
         </div>
       </div>
       <ul
         tabIndex={0}
-        className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm space-y-1.5"
+        className="dropdown-content menu bg-base-100 rounded-box z-10 w-52 p-2 shadow-md space-y-1.5"
       >
-        <li className="p-2 font-medium text-secondary">
+        <li className="p-2 font-medium text-pink-600">
           User Name: {user?.displayName}
         </li>
         <li>
           <button
             onClick={handleSignOut}
-            className="btn btn-sm btn-primary w-full"
+            className="btn btn-sm bg-pink-600 hover:bg-pink-700 border-0 w-full text-white"
           >
             Logout
           </button>
