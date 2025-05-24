@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 
 const SignIn = () => {
   const [showEye, setShowEye] = useState(false);
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, googleSignInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -42,19 +42,38 @@ const SignIn = () => {
 
     signInUser(email, password)
       .then(() => {
+        navigate(`${location?.state ? location?.state : "/"}`);
         Swal.fire({
           icon: "success",
           title: "Welcome",
           showConfirmButton: false,
           timer: 1500,
         });
-        navigate(`${location?.state ? location?.state : "/"}`);
       })
       .catch((error) => {
         const friendlyMessage = getSignInErrorMessage(error.code);
         Swal.fire({
           icon: "error",
           title: friendlyMessage,
+        });
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignInUser()
+      .then(() => {
+        navigate(location?.state || "/");
+        Swal.fire({
+          icon: "success",
+          title: "Welcome",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: error.message,
         });
       });
   };
@@ -120,7 +139,10 @@ const SignIn = () => {
         </div>
 
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full flex items-center justify-center">
+        <button
+          onClick={handleGoogleSignIn}
+          className="btn btn-outline w-full flex items-center justify-center"
+        >
           <FcGoogle className="mr-2" /> Sign in with Google
         </button>
       </div>

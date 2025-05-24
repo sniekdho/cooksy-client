@@ -1,14 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
+import Spinner from "./Spinner";
 
 const TopRecipes = () => {
   const [topRecipes, setTopRecipes] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("http://localhost:3000/recipes?limit=6")
       .then((res) => res.json())
-      .then((data) => setTopRecipes(data));
+      .then((data) => {
+        setTopRecipes(data);
+        setLoading(false);
+      });
   }, []);
+
+  if (loading) return <Spinner />;
 
   return (
     <section className="my-12 px-4 max-w-7xl mx-auto">

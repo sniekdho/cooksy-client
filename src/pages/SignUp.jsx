@@ -8,7 +8,8 @@ import Swal from "sweetalert2";
 const SignUp = () => {
   const [showEye, setShowEye] = useState(false);
   const [error, setError] = useState("");
-  const { setUser, createUser, updateProfileUser } = useContext(AuthContext);
+  const { setUser, createUser, updateProfileUser, googleSignInUser } =
+    useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -79,14 +80,14 @@ const SignUp = () => {
                     displayName: name,
                     photoURL: photo,
                   });
+                  setError("");
+                  navigate(`${location?.state ? location?.state : "/"}`);
                   Swal.fire({
                     icon: "success",
                     title: "Account Created Successfully",
                     showConfirmButton: false,
                     timer: 1500,
                   });
-                  setError("");
-                  navigate(`${location?.state ? location?.state : "/"}`);
                 })
                 .catch((error) => {
                   Swal.fire({
@@ -109,6 +110,53 @@ const SignUp = () => {
           icon: "error",
           title: "Oops...",
           text: friendlyMessage,
+        });
+      });
+  };
+
+  const handleGoogleSignUp = () => {
+    googleSignInUser()
+      .then((result) => {
+        const user = result.user;
+
+        const savedUser = {
+          name: user.displayName,
+          email: user.email,
+          photo: user.photoURL,
+        };
+
+        // Save Google user to DB
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(savedUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.insertedId || data.existingUser) {
+              setUser(user);
+              navigate(location?.state || "/");
+              Swal.fire({
+                icon: "success",
+                title: "Account Created Successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            } else {
+              Swal.fire({
+                icon: "error",
+                title: "Something went wrong!",
+                text: "Could not save Google user to database.",
+              });
+            }
+          });
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: error.message,
         });
       });
   };
@@ -192,7 +240,10 @@ const SignUp = () => {
         </div>
 
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full flex items-center justify-center">
+        <button
+          onClick={handleGoogleSignUp}
+          className="btn btn-outline w-full flex items-center justify-center"
+        >
           <FcGoogle className="mr-2" /> Sign up with Google
         </button>
       </div>
