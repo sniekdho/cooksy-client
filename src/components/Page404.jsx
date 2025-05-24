@@ -1,15 +1,18 @@
 import React from "react";
-import not_found from "../assets/images/error.jpg";
+import cookingAnimation from "../assets/animation/cooking.json";
 import { Link } from "react-router";
+import Lottie from "lottie-react";
 
 const Page404 = () => {
   return (
     <div className="min-h-screen bg-orange-50 flex flex-col items-center justify-center text-center p-6">
-      <img
-        src={not_found}
-        alt="404 - Not Found"
-        className="w-64 md:w-96 mb-8 animate-pulse rounded-lg shadow-pink-600 shadow-2xl"
-      />
+      <div className="my-8 flex justify-center">
+        <Lottie
+          animationData={cookingAnimation}
+          loop={true}
+          style={{ maxWidth: "300px", width: "100%" }}
+        />
+      </div>
       <h1 className="text-5xl font-extrabold text-orange-500 mb-4">404</h1>
       <h2 className="text-2xl font-semibold text-gray-800 mb-2">
         Oops! Your snack got lost...

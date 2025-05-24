@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Typewriter } from "react-simple-typewriter";
 
 import banner1 from "../assets/bannerImages/bannerImage1.jpg";
 import banner2 from "../assets/bannerImages/bannerImage2.jpg";
@@ -61,7 +62,15 @@ const Banner = () => {
               />
               <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white px-4 text-center">
                 <h2 className="text-3xl md:text-5xl font-bold mb-2 text-white drop-shadow-lg">
-                  {slide.heading}
+                  <Typewriter
+                    words={[slide.heading]}
+                    loop={false}
+                    cursor
+                    cursorStyle="_"
+                    typeSpeed={50}
+                    deleteSpeed={30}
+                    delaySpeed={2000}
+                  />
                 </h2>
                 <p className="text-lg md:text-xl text-gray-100 drop-shadow-sm">
                   {slide.subtext}

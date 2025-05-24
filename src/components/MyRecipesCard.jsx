@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
 
 const MyRecipesCard = ({ recipe, myRecipes, setMyRecipes }) => {
   const [selectedRecipe, setSelectedRecipe] = useState(null);
@@ -123,19 +124,27 @@ const MyRecipesCard = ({ recipe, myRecipes, setMyRecipes }) => {
         </p>
         <div className="flex justify-end gap-3 mt-4">
           <button
+            data-tooltip-id={`update-tooltip-${recipe._id}`}
+            data-tooltip-content="Update Recipe"
             onClick={() => setSelectedRecipe(recipe)}
             className="btn btn-sm bg-yellow-500 hover:bg-yellow-600 text-white"
           >
-            Update
+            Update ✏️
           </button>
           <button
+            data-tooltip-id={`delete-tooltip-${recipe._id}`}
+            data-tooltip-content="Delete Recipe"
             onClick={() => handleDelete(recipe._id)}
             className="btn btn-sm bg-red-500 hover:bg-red-600 text-white"
           >
-            Delete
+            Delete 🗑️
           </button>
         </div>
       </div>
+
+      {/* Tooltips */}
+      <Tooltip id={`update-tooltip-${recipe._id}`} place="top" />
+      <Tooltip id={`delete-tooltip-${recipe._id}`} place="top" />
 
       {selectedRecipe && (
         <dialog open className="modal modal-bottom sm:modal-middle">
