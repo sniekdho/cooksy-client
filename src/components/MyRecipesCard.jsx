@@ -16,7 +16,7 @@ const MyRecipesCard = ({ recipe, myRecipes, setMyRecipes }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/recipes/${id}`, {
+        fetch(`https://cooksy-server-nine.vercel.app/recipes/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
@@ -58,13 +58,16 @@ const MyRecipesCard = ({ recipe, myRecipes, setMyRecipes }) => {
       confirmButtonText: "Yes, update it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:3000/recipes/${selectedRecipe._id}`, {
-          method: "PUT",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(updatedRecipe),
-        })
+        fetch(
+          `https://cooksy-server-nine.vercel.app/recipes/${selectedRecipe._id}`,
+          {
+            method: "PUT",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(updatedRecipe),
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             if (data.modifiedCount > 0) {

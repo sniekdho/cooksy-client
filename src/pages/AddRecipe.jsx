@@ -45,7 +45,7 @@ const AddRecipe = () => {
     }).then((result) => {
       /* Read more about isConfirmed, isDenied below */
       if (result.isConfirmed) {
-        fetch("http://localhost:3000/recipes", {
+        fetch("https://cooksy-server-nine.vercel.app/recipes", {
           method: "POST",
           headers: {
             "content-type": "application/json",

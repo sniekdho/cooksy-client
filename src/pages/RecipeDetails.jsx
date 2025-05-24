@@ -33,7 +33,7 @@ const RecipeDetails = () => {
 
     const newLikes = likeCount + 1;
 
-    fetch(`http://localhost:3000/recipes/${singleRecipe._id}`, {
+    fetch(`https://cooksy-server-nine.vercel.app/recipes/${singleRecipe._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

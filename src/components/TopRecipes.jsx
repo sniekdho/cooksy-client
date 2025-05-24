@@ -7,7 +7,7 @@ const TopRecipes = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/recipes?limit=6")
+    fetch("https://cooksy-server-nine.vercel.app/recipes?limit=6")
       .then((res) => res.json())
       .then((data) => {
         setTopRecipes(data);

@@ -63,7 +63,7 @@ const SignUp = () => {
       .then(() => {
         const userProfile = { email, name, photo };
 
-        fetch("http://localhost:3000/users", {
+        fetch("https://cooksy-server-nine.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -126,7 +126,7 @@ const SignUp = () => {
         };
 
         // Save Google user to DB
-        fetch("http://localhost:3000/users", {
+        fetch("https://cooksy-server-nine.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

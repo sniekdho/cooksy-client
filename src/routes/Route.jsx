@@ -30,7 +30,7 @@ const router = createBrowserRouter([
       {
         path: "/recipe_details/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/recipes/${params.id}`),
+          fetch(`https://cooksy-server-nine.vercel.app/recipes/${params.id}`),
         element: (
           <PrivateRoute>
             <RecipeDetails></RecipeDetails>
