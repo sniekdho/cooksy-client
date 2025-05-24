@@ -6,6 +6,16 @@ import Spinner from "../components/Spinner";
 const AllRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedCuisine, setSelectedCuisine] = useState("All");
+
+  const cuisineTypes = [
+    "All",
+    "Italian",
+    "Mexican",
+    "Indian",
+    "Chinese",
+    "Others",
+  ];
 
   useEffect(() => {
     setLoading(true);
@@ -16,6 +26,14 @@ const AllRecipes = () => {
         setLoading(false);
       });
   }, [setLoading]);
+
+  const filteredRecipes =
+    selectedCuisine === "All"
+      ? recipes
+      : recipes.filter(
+          (recipe) =>
+            recipe.cuisine?.toLowerCase() === selectedCuisine.toLowerCase()
+        );
 
   if (loading) return <Spinner />;
 
@@ -28,8 +46,21 @@ const AllRecipes = () => {
         Discover a wide variety of delicious recipes shared by our cooking
         community.
       </p>
+      <div className="flex justify-center mt-6 mb-6">
+        <select
+          value={selectedCuisine}
+          onChange={(e) => setSelectedCuisine(e.target.value)}
+          className="px-4 py-2 border rounded-md shadow-md text-gray-700"
+        >
+          {cuisineTypes.map((type) => (
+            <option key={type} value={type}>
+              {type}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {recipes.map((recipe) => (
+        {filteredRecipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>
         ))}
       </div>
