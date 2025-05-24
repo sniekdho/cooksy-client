@@ -1,12 +1,68 @@
-# React + Vite
+# CookSy - A Modern Recipe Management Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+**CookSy** is a full-stack recipe management web application built with React and Express. It allows users to securely register and log in, add and manage their own recipes, and browse a modern, responsive interface. Whether you're a passionate home cook or a professional chef, CookSy makes managing your culinary creations simple and enjoyable.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Demo
 
-## Expanding the ESLint configuration
+🌐 **Client**: [https://cooksy.netlify.app](https://cooksy.netlify.app)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> 🔐 Server runs on a separate backend hosted via Vercel.
+
+---
+
+## Features
+
+### Client-Side
+
+- 🔐 **User Authentication**: Secure registration, login, and Google sign-in via Firebase.
+- 📖 **Recipe Management**: Add, update, and delete your recipes in a user-friendly interface.
+- 🛡 **Protected Dashboard**: Accessible only to authenticated users.
+- 🌗 **Dark/Light Theme**: Toggle for user-preferred visual themes.
+- ✨ **Modern UI/UX**: Built with Tailwind CSS, DaisyUI, SwiperJS, Lottie, and SweetAlert2.
+
+### Server-Side
+
+- 🧩 **Express REST API**: Robust backend powered by Express.js.
+- 🗂 **MongoDB Integration**: CRUD operations for storing recipe data.
+- 🔐 **Environment Variables**: Secured using `dotenv`.
+- 🌐 **CORS Enabled**: Safe communication between client and server.
+
+---
+
+## Tech Stack
+
+### Frontend
+
+- React 19
+- Tailwind CSS 4 + DaisyUI
+- Firebase Authentication
+- React Router 7
+- SwiperJS, Lottie, SweetAlert2, React Tooltip
+
+### Backend
+
+- Node.js
+- Express 5
+- MongoDB 6
+- CORS, Dotenv
+
+---
+
+## Dependencies
+
+### Client (`cooksy-client`)
+
+- `@tailwindcss/vite`, `daisyui`, `firebase`
+- `lottie-react`, `lucide-react`, `react`, `react-dom`
+- `react-icons`, `react-router`, `react-simple-typewriter`
+- `react-tooltip`, `react-awesome-reveal`, `sweetalert2`, `swiper`, `tailwindcss`
+
+### Server (`cooksy-server`)
+
+- `express`, `cors`, `dotenv`, `mongodb`
+
+---
+
+## Developed with ❤️ by Md. Shafiqul Islam
