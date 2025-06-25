@@ -15,6 +15,8 @@ import RecipeDetails from "../pages/RecipeDetails";
 import AboutUs from "../pages/AboutUs";
 import Contact from "../pages/Contact";
 import Support from "../pages/Support";
+import DashboardLayout from "../layouts/DashboardLayout";
+import Overview from "../pages/Overview";
 
 const router = createBrowserRouter([
   {
@@ -47,28 +49,13 @@ const router = createBrowserRouter([
           fetch(`https://cooksy-server-nine.vercel.app/recipes/${params.id}`),
         element: (
           <PrivateRoute>
-            <RecipeDetails></RecipeDetails>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/addRecipe",
-        element: (
-          <PrivateRoute>
-            <AddRecipe></AddRecipe>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/myRecipes",
-        element: (
-          <PrivateRoute>
-            <MyRecipes></MyRecipes>
+            <RecipeDetails />
           </PrivateRoute>
         ),
       },
     ],
   },
+
   {
     path: "/auth",
     Component: AuthLayout,
@@ -83,6 +70,30 @@ const router = createBrowserRouter([
       },
     ],
   },
+
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout />
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        index: true,
+        Component: Overview,
+      },
+      {
+        path: "/dashboard/addRecipe",
+        Component: AddRecipe,
+      },
+      {
+        path: "/dashboard/myRecipes",
+        Component: MyRecipes,
+      },
+    ],
+  },
+
   {
     path: "/*",
     Component: Page404,

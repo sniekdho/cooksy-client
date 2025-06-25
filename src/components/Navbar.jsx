@@ -24,10 +24,7 @@ const Navbar = () => {
     { name: "Support", path: "/support" },
   ];
 
-  const privateNavItems = [
-    { name: "Add Recipe", path: "/addRecipe" },
-    { name: "My Recipe", path: "/myRecipes" },
-  ];
+  const privateNavItems = [{ name: "Dashboard", path: "/dashboard" }];
 
   const navItemsToShow = user
     ? [...publicNavItems, ...privateNavItems]
