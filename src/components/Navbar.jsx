@@ -35,7 +35,7 @@ const Navbar = () => {
       <div className="flex items-center justify-between max-w-7xl mx-auto">
         <div className="flex items-center gap-4">
           <button
-            className="md:hidden cursor-pointer"
+            className="lg:hidden cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             {menuOpen ? <X /> : <Menu />}
@@ -44,7 +44,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <Link to="/">
               <img
-                className="w-10 h-10 cursor-pointer hidden md:inline-block"
+                className="w-10 h-10 cursor-pointer hidden lg:inline-block"
                 src={navLogo}
                 alt="Cooking"
               />
@@ -56,7 +56,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        <ul className="hidden md:flex space-x-4">
+        <ul className="hidden lg:flex space-x-4">
           {navItemsToShow.map((item, index) => (
             <NavLink
               key={index}
