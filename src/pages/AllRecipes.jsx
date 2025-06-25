@@ -7,6 +7,7 @@ const AllRecipes = () => {
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCuisine, setSelectedCuisine] = useState("All");
+  const [sortOrder, setSortOrder] = useState("none");
 
   const cuisineTypes = [
     "All",
@@ -16,6 +17,8 @@ const AllRecipes = () => {
     "Chinese",
     "Others",
   ];
+
+  // const cuisineTypes = ["All", ...new Set(recipes.map(recipe => recipe.cuisine).filter(Boolean))];
 
   useEffect(() => {
     setLoading(true);
@@ -35,6 +38,12 @@ const AllRecipes = () => {
             recipe.cuisine?.toLowerCase() === selectedCuisine.toLowerCase()
         );
 
+  if (sortOrder === "asc") {
+    filteredRecipes.sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortOrder === "desc") {
+    filteredRecipes.sort((a, b) => b.title.localeCompare(a.title));
+  }
+
   if (loading) return <Spinner />;
 
   return (
@@ -46,7 +55,9 @@ const AllRecipes = () => {
         Discover a wide variety of delicious recipes shared by our cooking
         community.
       </p>
-      <div className="flex justify-center mt-6 mb-6">
+
+      <div className="flex justify-center mt-6 mb-6 gap-4 flex-wrap">
+        {/* filtering functionality */}
         <select
           value={selectedCuisine}
           onChange={(e) => setSelectedCuisine(e.target.value)}
@@ -58,7 +69,19 @@ const AllRecipes = () => {
             </option>
           ))}
         </select>
+
+        {/* sorting functionality */}
+        <select
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+          className="px-4 py-2 border rounded-md shadow-md bg-base-200 border-base-content/30"
+        >
+          <option value="none">Sort by</option>
+          <option value="asc">Title (A-Z)</option>
+          <option value="desc">Title (Z-A)</option>
+        </select>
       </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredRecipes.map((recipe) => (
           <RecipeCard key={recipe._id} recipe={recipe}></RecipeCard>
