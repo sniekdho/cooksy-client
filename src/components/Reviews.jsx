@@ -27,7 +27,7 @@ const Reviews = () => {
 
   return (
     <section className="bg-base-100 py-16 px-4 md:px-8">
-      <div className="max-w-6xl mx-auto text-center">
+      <div className="max-w-7xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-secondary mb-10">
           What Our Users Say
         </h2>

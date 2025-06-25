@@ -4,6 +4,7 @@ import WhyChooseUs from "../components/WhyChooseUs";
 import Reviews from "../components/Reviews";
 import TopRecipes from "../components/TopRecipes";
 import { Fade, Slide, Zoom } from "react-awesome-reveal";
+import Newsletter from "../components/Newsletter";
 
 const Home = () => {
   return (
@@ -27,6 +28,11 @@ const Home = () => {
       <Fade direction="up" delay={250} triggerOnce>
         <Reviews />
       </Fade>
+
+      {/* Fade right newsletter with a slight delay */}
+      <Slide direction="right" delay={300} triggerOnce>
+        <Newsletter />
+      </Slide>
     </div>
   );
 };

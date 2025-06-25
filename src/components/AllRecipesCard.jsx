@@ -6,10 +6,10 @@ const RecipeCard = ({ recipe }) => {
     recipe || {};
   return (
     <div className="card bg-base-100 rounded-xl shadow-md overflow-hidden transition hover:shadow-lg">
-      <figure>
+      <figure className="h-40 w-full overflow-hidden">
         <img src={image} alt={title} />
       </figure>
-      <div className="card-body">
+      <div className="card-body flex flex-col flex-grow">
         <h2 className="card-title text-primary">{title}</h2>
         <p className="text-sm text-base-content/70">
           <strong className="text-secondary">Cuisine:</strong> {cuisine}
@@ -23,7 +23,7 @@ const RecipeCard = ({ recipe }) => {
         <p className="text-sm text-base-content/70">
           <strong className="text-secondary">Likes:</strong> {likeCount}
         </p>
-        <Link to={`/recipe_details/${_id}`}>
+        <Link to={`/recipe_details/${_id}`} className="mt-auto">
           <button className="mt-4 bg-primary hover:bg-primary-focus text-primary-content px-4 py-2 rounded-md w-full cursor-pointer">
             See Details
           </button>
