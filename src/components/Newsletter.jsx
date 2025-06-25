@@ -6,14 +6,14 @@ const Newsletter = () => {
         <p className="text-lg text-base-content/70 mb-6">
           Subscribe to get the latest recipes and tips.
         </p>
-        <form className="flex flex-col sm:flex-row gap-4">
+        <form className="flex flex-col items-center sm:flex-row sm:items-stretch gap-4">
           <input
             type="email"
             placeholder="Your email"
-            className="input input-bordered flex-grow"
+            className="input input-bordered w-full max-w-md"
             required
           />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary px-6 py-2 w-auto">
             Subscribe
           </button>
         </form>
