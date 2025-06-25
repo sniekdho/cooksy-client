@@ -12,6 +12,9 @@ import AddRecipe from "../pages/AddRecipe";
 import MyRecipes from "../pages/MyRecipes";
 import Spinner from "../components/Spinner";
 import RecipeDetails from "../pages/RecipeDetails";
+import AboutUs from "../pages/AboutUs";
+import Contact from "../pages/Contact";
+import Support from "../pages/Support";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
       {
         path: "/allRecipes",
         Component: AllRecipes,
+      },
+      {
+        path: "/about",
+        Component: AboutUs,
+      },
+      {
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/support",
+        Component: Support,
       },
       {
         path: "/recipe_details/:id",
