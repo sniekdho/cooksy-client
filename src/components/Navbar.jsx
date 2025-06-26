@@ -1,5 +1,5 @@
 import { Menu, Moon, Sun, X } from "lucide-react";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import navLogo from "../assets/icons/cookingNavLogo.png";
 import { AuthContext } from "../contexts/AuthContext";
@@ -10,9 +10,16 @@ const Navbar = () => {
   const [theme, setTheme] = useState("light");
   const { user } = useContext(AuthContext);
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "light";
+    setTheme(savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
+  }, []);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
     document.documentElement.setAttribute("data-theme", newTheme);
   };
 
